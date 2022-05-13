@@ -1,0 +1,17 @@
+<div class="container">
+
+  <div class="questions" *ngIf="questions">
+    <fieldset class="form-group" *ngFor="let question of questions">
+      <legend class="mt-4" [innerHTML]="question.question"></legend>
+      <div class="form-check" *ngFor="let answer of question.answers">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" [checked]="answer.answered" name="{{question.uuid}}"
+                 id="{{answer.uuid}}" (change)="saveAnswer(answer.uuid)">
+          <div [innerHTML]="answer.answer"></div>
+        </label>
+      </div>
+    </fieldset>
+
+    <button class="btn btn-secondary mt-3" [disabled]="unansweredQuestionIsPresent()" (click)="finish()">Finish</button>
+  </div>
+</div>

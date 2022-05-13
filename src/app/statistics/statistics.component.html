@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+
+  <div id="history">
+    <h3 class="mt-3">Global statistics</h3>
+    <table class="table mt-3" *ngIf="statistics">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">Total games</th>
+        <th scope="col">Total score</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let userStatistics of statistics; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{userStatistics.user_name}}</td>
+        <td>{{userStatistics.total_quizzes}}</td>
+        <td>{{userStatistics.total_score}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

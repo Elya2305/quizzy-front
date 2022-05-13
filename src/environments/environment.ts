@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  startQuiz: 'http://localhost:8080/quiz/start',
+  finishQuiz: 'http://localhost:8080/quiz/finish',
+  saveQuestionAnswer: 'http://localhost:8080/question-answer',
+  getCorrectAnswers: 'http://localhost:8080/quiz/correct-answers',
+  getActiveQuizIfExists: 'http://localhost:8080/quiz/active',
+  getStatistics: 'http://localhost:8080/history/statistics',
+  getGlobalStatistics: 'http://localhost:8080/history/statistics/global',
+  getHistory: 'http://localhost:8080/history',
+  getCategories: 'http://localhost:8080/category/all',
+  getUserProfile: 'http://localhost:8080/user/profile',
 };
 
 /*

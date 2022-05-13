@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+
+<div [ngClass]="loadQuiz ? 'wrapper' : 'dummy'">
+  <div class="container">
+
+    <div class="game-settings">
+
+      <form action="" [formGroup]="form" (ngSubmit)="initGame()">
+        <div class="setting-values">
+
+          <legend class="fs-5">Select difficulty:</legend>
+
+          <select class="form-select mb-3" formControlName="difficulty">
+            <option *ngFor="let difficulty of getDifficulties()"
+                    [value]="difficulty.value">{{difficulty.display_title}}</option>
+          </select>
+
+
+          <legend class="fs-5">Select type:</legend>
+          <select class="form-select mb-3" formControlName="type">
+            <option *ngFor="let type of getTypes()" [value]="type.value">{{type.display_title}}</option>
+          </select>
+
+          <legend class="fs-5">Select category:</legend>
+          <select class="form-select mb-3" formControlName="category" *ngIf="categories">
+            <option *ngFor="let category of categories" [value]="category.value">{{category.display_title}}</option>
+          </select>
+
+          <legend class="fs-5">Select amount of questions (min 3, max 20):</legend>
+          <input class="form-select mb-3" formControlName="amount" type="number" min="3" max="20"
+                 [class.is-invalid]="form.get('amount')?.invalid && form.get('amount')?.touched">
+        </div>
+        <div class="start-game-btn">
+          <button type="submit" class="btn btn-primary" [class.disabled]="form.invalid">Start game</button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="spinner" *ngIf="loadQuiz">
+  <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+</div>
