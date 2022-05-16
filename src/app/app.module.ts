@@ -17,6 +17,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StatisticsComponent } from './statistics/statistics.component';
 import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "@abacritt/angularx-social-login";
+import {environment} from "../environments/environment";
 
 const RESPONSE_INTERCEPTOR_PROVIDER: Provider = {
   multi: true,
@@ -32,7 +33,7 @@ const SOCIAL_PROVIDER = {
       {
         id: GoogleLoginProvider.PROVIDER_ID,
         provider: new GoogleLoginProvider(
-          '1079591479751-6fiu4a583rtir3o7qbctrs74bjpnh3m1.apps.googleusercontent.com'
+          environment.clientId
         )
       }
     ],

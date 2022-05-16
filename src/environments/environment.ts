@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  clientId: '1079591479751-6fiu4a583rtir3o7qbctrs74bjpnh3m1.apps.googleusercontent.com',
+
   startQuiz: 'http://localhost:8080/quiz/start',
   finishQuiz: 'http://localhost:8080/quiz/finish',
   saveQuestionAnswer: 'http://localhost:8080/question-answer',
