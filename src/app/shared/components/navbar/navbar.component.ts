@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SocialAuthService, SocialUser} from "angularx-social-login";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-navbar',

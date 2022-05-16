@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {NavbarComponent} from './shared/components/navbar/navbar.component';
-import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "angularx-social-login";
 import {LoginComponent} from './login/login.component';
 import {CreateGameComponent} from './create-game/create-game.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -17,6 +16,7 @@ import {AuthInterceptor} from "./shared/interceptor/auth.interceptor";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StatisticsComponent } from './statistics/statistics.component';
+import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "@abacritt/angularx-social-login";
 
 const RESPONSE_INTERCEPTOR_PROVIDER: Provider = {
   multi: true,

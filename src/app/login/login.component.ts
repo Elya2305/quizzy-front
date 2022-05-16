@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {GoogleLoginProvider, SocialAuthService} from 'angularx-social-login';
 import {Router} from '@angular/router';
+import {GoogleLoginProvider, SocialAuthService} from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-login',
