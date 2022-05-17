@@ -1,6 +1,7 @@
 import {Component, NgZone, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CredentialResponse} from 'google-one-tap';
+import {environment} from 'src/environments/environment';
 import {AuthService} from "../shared/services/auth.service";
 
 @Component({
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
     window.onGoogleLibraryLoad = () => {
       // @ts-ignore
       google.accounts.id.initialize({
-        client_id: '1079591479751-6fiu4a583rtir3o7qbctrs74bjpnh3m1.apps.googleusercontent.com',
+        client_id: environment.clientId,
         callback: this.handleCredentialResponse.bind(this),
         auto_select: true,
         cancel_on_tap_outside: false
