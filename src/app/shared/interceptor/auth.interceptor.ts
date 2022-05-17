@@ -1,15 +1,8 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-  HttpResponse
-} from '@angular/common/http';
-import {catchError, EMPTY, Observable, of} from 'rxjs';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {catchError, EMPTY, Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {AlertService} from '../services/alert.service';
-import {AuthGuardService} from "../services/auth-guard.service";
+import {AuthService} from "../services/auth.service";
 
 class Error {
   message: string;
@@ -19,25 +12,16 @@ class Error {
 @Injectable({providedIn: 'root'})
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private alertService: AlertService,
-              private authGuardService: AuthGuardService) {
-  }
-
-  private static emptyApiBody(r: HttpResponse<any>): Observable<HttpResponse<any>> {
-    return of(
-      r.clone<any>({
-        body: null,
-      }),
-    );
+              private authService: AuthService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Clone the request to add the new header
-
     const clonedRequest = request.clone(
       {
         headers: request.headers.append(
           'Authorization-Google',
-          this.authGuardService.idToken
+          // @ts-ignore
+          this.authService.getIdToken()
         )
       }
     );

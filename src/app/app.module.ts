@@ -14,30 +14,13 @@ import {FinishGameComponent} from './finish-game/finish-game.component';
 import {AlertComponent} from './shared/components/alert/alert.component';
 import {AuthInterceptor} from "./shared/interceptor/auth.interceptor";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StatisticsComponent } from './statistics/statistics.component';
-import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "@abacritt/angularx-social-login";
-import {environment} from "../environments/environment";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {StatisticsComponent} from './statistics/statistics.component';
 
 const RESPONSE_INTERCEPTOR_PROVIDER: Provider = {
   multi: true,
   provide: HTTP_INTERCEPTORS,
   useClass: AuthInterceptor
-};
-
-const SOCIAL_PROVIDER = {
-  provide: 'SocialAuthServiceConfig',
-  useValue: {
-    autoLogin: true,
-    providers: [
-      {
-        id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider(
-          environment.clientId
-        )
-      }
-    ],
-  } as SocialAuthServiceConfig,
 };
 
 @NgModule({
@@ -55,7 +38,6 @@ const SOCIAL_PROVIDER = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SocialLoginModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -63,7 +45,7 @@ const SOCIAL_PROVIDER = {
     BrowserAnimationsModule
   ],
   providers: [
-    SOCIAL_PROVIDER,
+    // SOCIAL_PROVIDER,
     RESPONSE_INTERCEPTOR_PROVIDER
   ],
 

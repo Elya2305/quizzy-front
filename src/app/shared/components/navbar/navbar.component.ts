@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
-import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -10,24 +9,18 @@ import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private socialAuthService: SocialAuthService,
-              private router: Router) {
+  constructor(private router: Router,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
   }
 
-  isAuthorized(): boolean {
-    var loggedIn = false
-    this.socialAuthService.authState.pipe(
-      map((socialUser: SocialUser) => !!socialUser),
-    ).subscribe(isLogged => loggedIn = isLogged)
-
-    return loggedIn;
-  }
-
   logOut() {
-    this.socialAuthService.signOut()
-      .then(r => this.router.navigate(['login']));
+    this.authService.removeIdToken()
+    this.router.navigate(['login'])
+      .then(() => {
+        window.location.reload();
+      });
   }
 }
