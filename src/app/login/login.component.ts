@@ -38,4 +38,8 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/profile'], {replaceUrl: true});
     });
   }
+
+  getClientId(): string {
+    return environment.clientId
+  }
 }
