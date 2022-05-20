@@ -1,7 +1,7 @@
 <!--Default settings of the game-->
 <!--Game history-->
 
-<div [ngClass]="!userProfile ? 'disabled-wrapper' : 'dummy'">
+<div [ngClass]="herokuIsWakingUp ? 'disabled-wrapper' : 'dummy'">
   <app-navbar></app-navbar>
   <div class="container">
 
@@ -65,6 +65,6 @@
   </div>
 </div>
 
-<div *ngIf="!userProfile">
+<div *ngIf="herokuIsWakingUp">
   <h1 class="heroku-warning">Please wait for heroku to wake up....</h1>
 </div>
