@@ -1,63 +1,70 @@
 <!--Default settings of the game-->
 <!--Game history-->
-<app-navbar></app-navbar>
-<div class="container">
 
-  <div class="row mt-3">
-    <div class="col-2" *ngIf="userProfile">
-      <img id="avatar" [src]="userProfile.picture_url"
-           class="img-thumbnail" alt="https://avatarfiles.alphacoders.com/798/79894.jpg">
-    </div>
+<div [ngClass]="!userProfile ? 'disabled-wrapper' : 'dummy'">
+  <app-navbar></app-navbar>
+  <div class="container">
 
-    <div class="col-3">
-      <div class="profile">
+    <div class="row mt-3">
+      <div class="col-2" *ngIf="userProfile">
+        <img id="avatar" [src]="userProfile.picture_url"
+             class="img-thumbnail" alt="https://avatarfiles.alphacoders.com/798/79894.jpg">
+      </div>
 
-        <form *ngIf="userProfile">
-          <div class="mb-3">
-            <label for="email" class="form-label">First name</label>
-            <input type="email" [value]="userProfile.first_name" class="form-control" id="firstname" disabled>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" [value]="userProfile.email" class="form-control" id="email" disabled>
-          </div>
-        </form>
+      <div class="col-3">
+        <div class="profile">
 
+          <form *ngIf="userProfile">
+            <div class="mb-3">
+              <label for="email" class="form-label">First name</label>
+              <input type="email" [value]="userProfile.first_name" class="form-control" id="firstname" disabled>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" [value]="userProfile.email" class="form-control" id="email" disabled>
+            </div>
+          </form>
+
+        </div>
       </div>
     </div>
+
+    <hr>
+    <h3 class="mt-3">Summary</h3>
+
+    <div *ngIf="statistics">
+      <p>Total games: {{statistics.total_quizzes}}</p>
+      <p>Total answered questions: {{statistics.total_answered_questions}}</p>
+      <p>Total correct questions: {{statistics.total_correct_questions}}</p>
+      <p>Percentage of correct answers: {{statistics.percentage_of_correct_questions | number : '.2-2'}}%</p>
+    </div>
+
+    <hr>
+    <div id="history">
+      <h3 class="mt-3">History</h3>
+      <table class="table" *ngIf="history">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Datetime</th>
+          <th scope="col">Difficulty</th>
+          <th scope="col">Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let historyEntry of history; let i = index">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{historyEntry.timestamp}}</td>
+          <td>{{historyEntry.difficulty}}</td>
+          <td>{{historyEntry.score}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
+</div>
 
-  <hr>
-  <h3 class="mt-3">Summary</h3>
-
-  <div *ngIf="statistics">
-    <p>Total games: {{statistics.total_quizzes}}</p>
-    <p>Total answered questions: {{statistics.total_answered_questions}}</p>
-    <p>Total correct questions: {{statistics.total_correct_questions}}</p>
-    <p>Percentage of correct answers: {{statistics.percentage_of_correct_questions | number : '.2-2'}}%</p>
-  </div>
-
-  <hr>
-  <div id="history">
-    <h3 class="mt-3">History</h3>
-    <table class="table" *ngIf="history">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Datetime</th>
-        <th scope="col">Difficulty</th>
-        <th scope="col">Score</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let historyEntry of history; let i = index">
-        <th scope="row">{{i + 1}}</th>
-        <td>{{historyEntry.timestamp}}</td>
-        <td>{{historyEntry.difficulty}}</td>
-        <td>{{historyEntry.score}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
+<div *ngIf="!userProfile">
+  <h1 class="heroku-warning">Please wait for heroku to wake up....</h1>
 </div>
