@@ -3,6 +3,7 @@ import {catchError, EMPTY, Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {AlertService} from '../services/alert.service';
 import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
 
 class Error {
   message: string;
@@ -12,7 +13,8 @@ class Error {
 @Injectable({providedIn: 'root'})
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private alertService: AlertService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -31,6 +33,13 @@ export class AuthInterceptor implements HttpInterceptor {
         let err: Error = error.error
         this.alertService.danger(err.message)
         console.log(error)
+
+        if (error.status === 403) {
+          this.router.navigate(['login'])
+            .then(() => {
+              window.location.reload();
+            });
+        }
 
         return EMPTY;
       })

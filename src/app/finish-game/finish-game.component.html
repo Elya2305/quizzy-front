@@ -9,11 +9,10 @@
 
   <div *ngIf="correctAnswers">
     <hr>
-    <h3>Correct answers:</h3>
-
     <div class="mb-3" *ngFor="let answer of correctAnswers">
       <div class="fs-4" [innerHTML]="answer.question"></div>
-      <div [innerHTML]="answer.correct_answer.answer"></div>
+      <div [innerHTML]="'Correct answer: ' + answer.correct_answer.answer"></div>
+      <div [innerHTML]="'Your answer: ' + answer.answered_answer.answer"></div>
     </div>
   </div>
 

@@ -113,6 +113,7 @@ export class QuestionWithCorrectAnswer {
   uuid: string;
   question: string;
   correct_answer: CorrectAnswer;
+  answered_answer: CorrectAnswer;
 }
 
 export class CorrectAnswer {
